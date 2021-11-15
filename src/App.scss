@@ -1,3 +1,7 @@
+:root {
+  --error-color: #FF0000;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.errors {
+  color: var(--error-color);
 }

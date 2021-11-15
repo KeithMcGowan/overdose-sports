@@ -1,0 +1,45 @@
+export const homepageQuery = `
+query {
+  overdoseSportsLandingPage(id: "6B0qS9981wKxB0BJI1nNFi") {
+    title
+    heroBanner {
+      title
+      description
+      url
+    }
+    categoryReferenceCollection(limit: 5) {
+      items {
+        headline
+        typeOfSport
+        description
+        sportCategoryImage {
+          title
+          description
+          url
+        }
+        articlePreview {
+          title
+          articleImageCollection(limit: 1) {
+            items {
+              title
+              description
+              url
+            }
+          }
+          typeOfSport
+          articleBody {
+            json
+          }
+          articleAuthor {
+            name
+          }
+        }
+        linkToArticle {
+          name
+          buttonText
+        }
+      }
+    }
+  }
+}
+`;
