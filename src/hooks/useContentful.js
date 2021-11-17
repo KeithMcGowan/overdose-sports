@@ -7,8 +7,7 @@ export const useContentful = (query) => {
   let [errors, setErrors] = useState(null);
 
   useEffect(() => {
-    window
-      .fetch(
+    fetch(
         `https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}`,
         {
           method: "POST",

@@ -7,6 +7,12 @@ query {
       description
       url
     }
+    socialLinksCollection {
+      items {
+        title
+        socialLink
+      }
+    }
     categoryReferenceCollection(limit: 5) {
       items {
         headline

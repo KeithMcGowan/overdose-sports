@@ -1,0 +1,134 @@
+@import "../../App.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+}
+
+.hero-banner {
+  width: 100vw;
+  height: 40vh;
+  position: relative;
+  border-bottom: 10px double $black-color;
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+  }
+
+  .title-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .overdose {
+      font-family: HarmoniaSansProCyr-SemiBold, Helvetica, Arial, sans-serif;
+      text-transform: uppercase;
+      font-size: 55px;
+      color: $black-color;
+      -webkit-text-fill-color: $black-color;
+      -webkit-text-stroke: 3px $white-color;
+      margin-bottom: 0;
+    }
+
+    .sports {
+      margin-top: -55px;
+      margin-left: 180px;
+      font-size: 50px;
+      color: $accent-color;
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
+      -webkit-text-fill-color: $accent-color;
+      -webkit-text-stroke: 4px $black-color;
+      transform: rotate(-5deg);
+    }
+  }
+
+  .social-links-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    .fab {
+      margin: 5px;
+      color: $accent-color;
+      -webkit-text-stroke: 2px $black-color;
+
+      &:hover,
+      &:focus,
+      &:focus-visible,
+      &:active {
+        color: $white-color;
+        -webkit-text-stroke: 2px $accent-color;
+      }
+    }
+  }
+}
+
+@media (min-width: $small) {
+  .hero-banner {
+    height: 60vh;
+
+    .title-container {
+      .overdose {
+        font-size: 100px;
+      }
+
+      .sports {
+        margin-top: -85px;
+        margin-left: 350px;
+        font-size: 80px;
+      }
+    }
+
+    .social-links-container {
+      right: 20px;
+    }
+  }
+}
+
+@media (min-width: $medium) {
+  .hero-banner {
+    .title-container {
+      .overdose {
+        font-size: 130px;
+      }
+
+      .sports {
+        margin-top: -120px;
+        margin-left: 480px;
+        font-size: 110px;
+      }
+    }
+
+    .social-links-container {
+      top: 20px;
+    }
+  }
+}
+
+@media (min-width: $large) {
+  .hero-banner {
+    height: 80vh;
+
+    .title-container {
+      .overdose {
+        font-size: 150px;
+      }
+
+      .sports {
+        margin-top: -140px;
+        margin-left: 550px;
+        font-size: 130px;
+      }
+    }
+
+    .social-links-container {
+        right: 30px;
+      }
+  }
+}
