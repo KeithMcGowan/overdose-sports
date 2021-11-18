@@ -1,23 +1,10 @@
 import React from "react";
 // import PropTyes from "prop-types";
 import { Link } from "react-router-dom";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import "./HomeContent.scss";
 
 export const HomeContent = ({ categoryReferences }) => {
-  // console.log(categoryReferences.items);
-  // function isLeft() {
-    // let isLeft;
-    
-    // categoryReferences.items.map((eachCategory) => {
-    //   // console.log("Each category: ", eachCategory);
-    //   if(eachCategory.indexOf() % 2 === 0 ) {
-    //     isLeft = "left";
-    //   } else {
-    //     isLeft = "right";
-    //   }
-    //   return isLeft;
-    // })
-  // }
 
   return (
     <div className="homepage-content">
@@ -32,22 +19,28 @@ export const HomeContent = ({ categoryReferences }) => {
         } = eachCategory;
         const { url: categoryURL } =
           sportCategoryImage;
-        const { title, articleImageCollection } = articlePreview;
+        const { title, articleImageCollection, articleBody } = articlePreview;
         const { name: author } = articlePreview.articleAuthor;
         const { url: articleURL, description: articleDescription } =
           articleImageCollection.items[0];
 
-        console.log("Each category: ", categoryReferences.items.indexOf(eachCategory));
-        let isLeft;
+        console.log(eachCategory.articlePreview.articleBody.json);
+        let animation;
 
-        if(categoryReferences.items.indexOf(eachCategory) % 2 !== 0) {
-          isLeft = "left";
-        } else {
-          isLeft = "right";
+        if (categoryReferences.items.indexOf(eachCategory) === 0) {
+          animation = "right animate__animated animate__bounceInLeft animate__delay-1s ";
+        } else if (categoryReferences.items.indexOf(eachCategory) === 1) {
+          animation = "left animate__animated animate__bounceInRight animate__delay-3s";
+        } else if (categoryReferences.items.indexOf(eachCategory) === 2) {
+          animation = "right animate__animated animate__bounceInLeft animate__delay-5s";
+        } else if (categoryReferences.items.indexOf(eachCategory) === 3) {
+          animation = "left animate__animated animate__bounceInRight animate__delay-7s";
+        } else if (categoryReferences.items.indexOf(eachCategory) === 4) {
+          animation = "right animate__animated animate__bounceInLeft animate__delay-9s";
         }
 
         return (
-          <div className={`category-card ${isLeft}`}>
+          <div className={`category-card ${animation} `}>
             <div className="category-preview" key={typeOfSport} style={{ backgroundImage: `url('${categoryURL}')` }}>
               <div className="gradient-overlay">
                 <div className="category-text">
@@ -57,10 +50,13 @@ export const HomeContent = ({ categoryReferences }) => {
               </div>
             </div>
             <div className="article-preview" key={title} style={{ border: "1px solid black" }}>
+                <h3>{title}</h3>
               <img loading="lazy" src={articleURL} alt={articleDescription} />
               <div className="article-preview-text">
-                <h3>{title}</h3>
-                <p>- {author}</p>
+                <div className="article-preview-body">
+                  {documentToReactComponents(articleBody.json)}
+                </div>
+                <p className="article-preview-author">- {author}</p>
                 <Link className="btn" to="#">{linkToArticle.buttonText}</Link>
               </div>
             </div>
