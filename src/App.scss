@@ -1,8 +1,8 @@
 // Colors
-$white-color: #FFFFFF;
+$white-color: #ffffff;
 $black-color: #000000;
-$accent-color: #90C1A9;
-$error-color: #FF0000;
+$accent-color: #90c1a9;
+$error-color: #ff0000;
 
 // Breakpoints
 $small: 550px;
@@ -26,6 +26,46 @@ h1 {
   font-weight: 800;
 }
 
+h2 {
+  font-size: 65px;
+  font-family: HarmoniaSansProCyr-SemiBold, Helvetica, Arial, sans-serif;
+  color: $black-color;
+  -webkit-text-fill-color: $black-color;
+  -webkit-text-stroke: 2px $accent-color;
+}
+
+h3 {
+  font-size: 35px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+p {
+  font-size: 20px;
+}
+
 .errors {
   color: $error-color;
+}
+
+.btn,
+.btn:visited {
+  color: $white-color;
+  text-decoration: none;
+  background: $accent-color;
+  border-radius: 15px;
+  padding: 0 20px;
+  border: 7px double $white-color;
+  box-shadow: 0 0 1px 1px $white-color;
+
+  &:hover,
+  &:focus-visible {
+    color: $accent-color;
+    background: $white-color;
+    border-color: $accent-color;
+    box-shadow: 0 0 1px 1px $accent-color;
+  }
+
+  &:active {
+    background-color: $black-color;
+  }
 }

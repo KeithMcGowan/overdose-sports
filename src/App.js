@@ -1,4 +1,5 @@
 import React from "react";
+// import { Routes, Route } from "react-router-dom";
 import { useContentful } from "./hooks/useContentful";
 import { homepageQuery } from "./contentfulQueries/homepageQuery";
 import "./App.scss";
@@ -17,6 +18,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Routes>
+        <Route exact path="/" element={Homepage} />
+      </Routes> */}
       <Homepage />
     </div>
   );
