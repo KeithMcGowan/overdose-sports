@@ -1,5 +1,5 @@
 import React from "react";
-import PropTyes from "prop-types";
+import PropTypes from "prop-types";
 import "./Header.scss";
 
 function FacebookLink({ url }) {
@@ -57,9 +57,9 @@ export const Header = (bannerInfo) => {
 };
 
 Header.propTypes = {
-  bannerInfo: PropTyes.shape({
-    title: PropTyes.string.isRequired,
-    heroBanner: PropTyes.object.isRequired,
-    socialLinks: PropTyes.object.isRequired,
-  }).isRequired,
+  bannerInfo: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    heroBanner: PropTypes.object.isRequired,
+    socialLinks: PropTypes.object.isRequired,
+  }),
 };
