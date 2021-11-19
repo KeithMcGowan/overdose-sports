@@ -1,27 +1,18 @@
 import React from "react";
-// import { Routes, Route } from "react-router-dom";
-import { useContentful } from "./hooks/useContentful";
-import { homepageQuery } from "./contentfulQueries/homepageQuery";
-import "./App.scss";
+import { Routes, Route } from "react-router-dom";
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
 import { Homepage } from "./pages/Homepage/Homepage";
+import "./App.scss";
 
 function App() {
-  let { data, errors } = useContentful(homepageQuery);
-
-  if (errors)
-    return (
-      <span className="errors">
-        {errors.map((error) => error.message).join(",")}
-      </span>
-    );
-  if (!data) return <span>Loading...</span>;
-
   return (
     <div className="App">
-      {/* <Routes>
-        <Route exact path="/" element={Homepage} />
-      </Routes> */}
-      <Homepage />
+      <Header />
+        <Routes>
+          <Route path="/" element=<Homepage /> />
+        </Routes>
+      <Footer />
     </div>
   );
 }

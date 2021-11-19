@@ -1,0 +1,67 @@
+@import "../../App.scss";
+
+.title-container {
+
+  .overdose {
+    font-family: HarmoniaSansProCyr-SemiBold, Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 55px;
+    color: $black-color;
+    -webkit-text-fill-color: $black-color;
+    -webkit-text-stroke: 3px $white-color;
+    margin-bottom: 0;
+  }
+
+  .sports {
+    margin-top: -55px;
+    margin-left: 180px;
+    font-size: 50px;
+    color: $accent-color;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    -webkit-text-fill-color: $accent-color;
+    -webkit-text-stroke: 4px $black-color;
+    transform: rotate(-5deg);
+  }
+}
+
+@media (min-width: $small) {
+  .title-container {
+    .overdose {
+      font-size: 100px;
+    }
+
+    .sports {
+      margin-top: -85px;
+      margin-left: 350px;
+      font-size: 80px;
+    }
+  }
+}
+
+// @media (min-width: $medium) {
+//   .title-container {
+//     .overdose {
+//       font-size: 130px;
+//     }
+
+//     .sports {
+//       margin-top: -120px;
+//       margin-left: 480px;
+//       font-size: 110px;
+//     }
+//   }
+// }
+
+// @media (min-width: $large) {
+//   .title-container {
+//     .overdose {
+//       font-size: 150px;
+//     }
+
+//     .sports {
+//       margin-top: -140px;
+//       margin-left: 550px;
+//       font-size: 130px;
+//     }
+//   }
+// }

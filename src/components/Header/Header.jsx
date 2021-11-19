@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useContentful } from "../../hooks/useContentful.js";
+import { homepageQuery } from "../../contentfulQueries/homepageQuery.js";
+import { Logo } from "../Logo/Logo.jsx";
 import "./Header.scss";
 
 function FacebookLink({ url }) {
@@ -34,22 +37,29 @@ function TwitterLink({ url }) {
   );
 }
 
-export const Header = (bannerInfo) => {
-  const { title, heroBanner, socialLinks } = bannerInfo;
+export const Header = () => {
+  let { data, errors } = useContentful(homepageQuery);
+
+  if (errors)
+    return (
+      <span className="errors">
+        {errors.map((error) => error.message).join(",")}
+      </span>
+    );
+  if (!data) return <span>Loading...</span>;
+
+  const { heroBanner, socialLinksCollection } = data.overdoseSportsLandingPage;
 
   return (
     <div className="header">
       <div className="hero-banner">
         <img src={heroBanner.url} alt={heroBanner.description} />
-        <div className="title-container">
-          <h1 className="overdose">{title.slice(0, 9)}</h1>
-          <h1 className="sports">{title.slice(-6)}</h1>
-        </div>
+        <Logo />
         <div className="social-links-container">
-          <FacebookLink url={socialLinks[0].socialLink} />
-          <LinkedinLink url={socialLinks[1].socialLink} />
-          <InstagramLink url={socialLinks[2].socialLink} />
-          <TwitterLink url={socialLinks[3].socialLink} />
+          <FacebookLink url={socialLinksCollection.items[0].socialLink} />
+          <LinkedinLink url={socialLinksCollection.items[1].socialLink} />
+          <InstagramLink url={socialLinksCollection.items[2].socialLink} />
+          <TwitterLink url={socialLinksCollection.items[3].socialLink} />
         </div>
       </div>
     </div>

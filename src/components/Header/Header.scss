@@ -25,27 +25,6 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
-    .overdose {
-      font-family: HarmoniaSansProCyr-SemiBold, Helvetica, Arial, sans-serif;
-      text-transform: uppercase;
-      font-size: 55px;
-      color: $black-color;
-      -webkit-text-fill-color: $black-color;
-      -webkit-text-stroke: 3px $white-color;
-      margin-bottom: 0;
-    }
-
-    .sports {
-      margin-top: -55px;
-      margin-left: 180px;
-      font-size: 50px;
-      color: $accent-color;
-      font-family: "Comic Sans MS", "Comic Sans", cursive;
-      -webkit-text-fill-color: $accent-color;
-      -webkit-text-stroke: 4px $black-color;
-      transform: rotate(-5deg);
-    }
   }
 
   .social-links-container {
@@ -72,18 +51,6 @@
 @media (min-width: $small) {
   .hero-banner {
     height: 60vh;
-
-    .title-container {
-      .overdose {
-        font-size: 100px;
-      }
-
-      .sports {
-        margin-top: -85px;
-        margin-left: 350px;
-        font-size: 80px;
-      }
-    }
 
     .social-links-container {
       right: 20px;

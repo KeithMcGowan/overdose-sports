@@ -1,10 +1,10 @@
 import React from "react";
+// import PropTypes from "prop-types";
 import { useContentful } from "../../hooks/useContentful.js";
 import { homepageQuery } from "../../contentfulQueries/homepageQuery.js";
-import "./Homepage.scss";
-import { HomeContent } from "../../components/HomeContent/HomeContent.jsx";
+import "./Logo.scss";
 
-export const Homepage = () => {
+export const Logo = () => {
   let { data, errors } = useContentful(homepageQuery);
 
   if (errors)
@@ -15,12 +15,12 @@ export const Homepage = () => {
     );
   if (!data) return <span>Loading...</span>;
 
-  const { title, categoryReferenceCollection } = data.overdoseSportsLandingPage;
+  const { title } = data.overdoseSportsLandingPage;
 
   return (
-    <>
-      <h2>{title} Features</h2>
-      <HomeContent categoryReferences={categoryReferenceCollection} />
-    </>
+    <div className="title-container">
+      <h1 className="overdose">{title.slice(0, 9)}</h1>
+      <h1 className="sports">{title.slice(-6)}</h1>
+    </div>
   );
 };
