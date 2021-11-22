@@ -1,21 +1,13 @@
-import React from "react";
-import { useContentful } from "../../hooks/useContentful.js";
-import { homepageQuery } from "../../contentfulQueries/homepageQuery.js";
-import "./Homepage.scss";
+import React, { useEffect } from "react";
 import { HomeContent } from "../../components/HomeContent/HomeContent.jsx";
+import "./Homepage.scss";
 
-export const Homepage = () => {
-  let { data, errors } = useContentful(homepageQuery);
+export const Homepage = (props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
-  if (errors)
-    return (
-      <span className="errors">
-        {errors.map((error) => error.message).join(",")}
-      </span>
-    );
-  if (!data) return <span>Loading...</span>;
-
-  const { title, categoryReferenceCollection } = data.overdoseSportsLandingPage;
+  const { title, categoryReferenceCollection } = props;
 
   return (
     <>

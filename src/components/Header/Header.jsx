@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useContentful } from "../../hooks/useContentful.js";
-import { homepageQuery } from "../../contentfulQueries/homepageQuery.js";
 import { Logo } from "../Logo/Logo.jsx";
 import "./Header.scss";
 
@@ -37,18 +35,9 @@ function TwitterLink({ url }) {
   );
 }
 
-export const Header = () => {
-  let { data, errors } = useContentful(homepageQuery);
+export const Header = (props) => {
 
-  if (errors)
-    return (
-      <span className="errors">
-        {errors.map((error) => error.message).join(",")}
-      </span>
-    );
-  if (!data) return <span>Loading...</span>;
-
-  const { heroBanner, socialLinksCollection } = data.overdoseSportsLandingPage;
+  const { heroBanner, socialLinksCollection } = props;
 
   return (
     <div className="header">

@@ -1,37 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import "./HomeContent.scss";
 
-function useOnScreen(options) {
-  const [ref, setRef] = useState(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        setVisible(entry.isIntersecting);
-      })
-    }, options);
-
-    if (ref) {
-      observer.observe(ref);
-    }
-
-    return () => {
-      if (ref) {
-        observer.unobserve(ref);
-      }
-    };
-  }, [ref, options]);
-
-  return [setRef, visible];
-}
-
 export const HomeContent = ({ categoryReferences }) => {
-  const [setRef, visible] = useOnScreen({ threshold: 0.2 });
-
   return (
     <div className="homepage-content">
       {categoryReferences.items.map((eachCategory) => {
@@ -45,7 +18,9 @@ export const HomeContent = ({ categoryReferences }) => {
         } = eachCategory;
         const { url: categoryURL, description: categoryImgAltTxt } =
           sportCategoryImage;
-        const { title, articleImageCollection, articleBody } = articlePreview;
+        const { title, articleImageCollection, articleBody, slug } =
+          articlePreview;
+        const articleSlug = `/${slug}`;
         const { name: author } = articlePreview.articleAuthor;
         const { url: articleURL, description: articleDescription } =
           articleImageCollection.items[0];
@@ -53,7 +28,7 @@ export const HomeContent = ({ categoryReferences }) => {
         let animation;
 
         if (categoryReferences.items.indexOf(eachCategory) === 0) {
-          {/* animation =
+          animation =
             "right animate__animated animate__bounceInLeft animate__delay-1s ";
         } else if (categoryReferences.items.indexOf(eachCategory) === 1) {
           animation =
@@ -67,26 +42,10 @@ export const HomeContent = ({ categoryReferences }) => {
         } else if (categoryReferences.items.indexOf(eachCategory) === 4) {
           animation =
             "right animate__animated animate__bounceInLeft animate__delay-9s";
-        } */}
-
-        animation =
-            "right";
-        } else if (categoryReferences.items.indexOf(eachCategory) === 1) {
-          animation =
-            "left";
-        } else if (categoryReferences.items.indexOf(eachCategory) === 2) {
-          animation =
-            "right";
-        } else if (categoryReferences.items.indexOf(eachCategory) === 3) {
-          animation =
-            "left";
-        } else if (categoryReferences.items.indexOf(eachCategory) === 4) {
-          animation =
-            "right";
         }
 
         return (
-          <div ref={setRef} className={`category-card ${animation} `} key={typeOfSport}>
+          <div className={`category-card ${animation} `} key={typeOfSport}>
             <div
               className="category-preview"
               key={typeOfSport}
@@ -112,7 +71,7 @@ export const HomeContent = ({ categoryReferences }) => {
                   {documentToReactComponents(articleBody.json)}
                 </div>
                 <p className="article-preview-author">- {author}</p>
-                <Link className="btn" to="#">
+                <Link className="btn" to={articleSlug}>
                   {linkToArticle.buttonText}
                 </Link>
               </div>

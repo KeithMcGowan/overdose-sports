@@ -1,0 +1,91 @@
+@import "../../App.scss";
+
+.article-page {
+  max-width: 1440px;
+  padding: 2vh 5vw;
+
+  .return-link {
+    text-align: left;
+
+    a {
+      color: $accent-color;
+    }
+  }
+
+  .article-img {
+    width: 80%;
+    height: auto;
+  }
+
+  .article-body {
+    margin: 8vh 0;
+
+    a {
+      color: $accent-color;
+      text-decoration: none;
+    }
+  }
+
+  .author-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      width: 50vw;
+      scale: 1;
+    }
+
+    .author-name {
+      font-size: 1em;
+    }
+
+    .author-bio {
+      max-width: 90vw;
+    }
+  }
+}
+
+@media (min-width: $small) {
+  .article-page {
+    .author-info {
+      justify-content: flex-end;
+      align-items: flex-start;
+      flex-direction: row;
+
+      img {
+        width: 20vw;
+      }
+
+      .author-name {
+        margin-top: 0;
+      }
+
+      .author-bio {
+        max-width: 20vw;
+        margin: 0 3vw;
+      }
+    }
+  }
+}
+
+@media (min-width: $medium) {
+  .article-page {
+    .author-info {
+      img {
+        width: 15vw;
+      }
+    }
+  }
+}
+
+@media (min-width: $large) {
+  .article-page {
+    .author-info {
+      img {
+        width: 10vw;
+      }
+    }
+  }
+}
