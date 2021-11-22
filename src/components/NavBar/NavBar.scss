@@ -1,0 +1,76 @@
+@import "../../App.scss";
+
+.nav {
+  margin: 3vh 0 0;
+
+  ul.nav-items {
+    margin-bottom: 0;
+    padding: 0;
+    height: 50px;
+  }
+
+  li {
+    vertical-align: top;
+    list-style-type: none;
+    display: inline-block;
+    color: $accent-color;
+    margin: 0 .25vw;
+
+    a:hover,
+    a:focus-visible,
+    .submenu-trigger:hover,
+    .submenu-trigger:focus-visible {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .submenu-trigger:visited {
+        text-decoration: none;
+    }
+  }
+
+  .nav-sub-items {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    text-align: left;
+    margin-left: 2em;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+  }
+
+  .nav-sub-items.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+
+    a:hover,
+    a:focus-visible {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: $small) {
+    .nav {
+        ul.nav-items {
+            height: 80px;
+        }
+
+        li {
+            margin: 0 1.5vw;
+        }
+    }
+}
+ 

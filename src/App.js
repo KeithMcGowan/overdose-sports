@@ -9,6 +9,7 @@ import { useContentful } from "./hooks/useContentful";
 // Component imports
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
+import { NavBar } from "./components/NavBar/NavBar";
 
 // Utils imports
 import * as PATHS from "./utils/paths";
@@ -46,6 +47,7 @@ function App() {
         heroBanner={heroBanner}
         socialLinksCollection={socialLinksCollection}
       />
+      <NavBar />
       <Routes>
         <Route
           path={PATHS.HOMEPAGE}

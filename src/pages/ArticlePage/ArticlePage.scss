@@ -5,7 +5,8 @@
   padding: 2vh 5vw;
 
   .return-link {
-    text-align: left;
+    // text-align: left;
+    margin-bottom: 2vh;
 
     a {
       color: $accent-color;
@@ -82,6 +83,10 @@
 
 @media (min-width: $large) {
   .article-page {
+    .return-link {
+        text-align: left;
+    }
+
     .author-info {
       img {
         width: 10vw;
