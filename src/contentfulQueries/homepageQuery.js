@@ -11,6 +11,7 @@ query {
       items {
         title
         socialLink
+        icon
       }
     }
     categoryReferenceCollection(limit: 5) {

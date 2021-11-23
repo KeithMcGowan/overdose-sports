@@ -6,14 +6,31 @@
   background: $accent-color;
   border-top: 10px double $black-color;
   margin-top: 15vh;
-//   position: absolute;
-//   bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   align-self: flex-end;
 
+  .social-links-container {
+    margin-bottom: 2vh;
+
+    .fab {
+      color: $white-color;
+      -webkit-text-stroke: 2px $black-color;
+  
+      &:hover,
+      &:focus,
+      &:focus-visible,
+      &:active {
+        color: $black-color;
+        -webkit-text-stroke: 2px $white-color;
+      }
+    }
+  }
+
   .title-container {
+    height: 250px;
     .sports {
       color: $white-color;
       -webkit-text-fill-color: $white-color;

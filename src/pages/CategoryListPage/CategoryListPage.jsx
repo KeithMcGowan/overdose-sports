@@ -42,7 +42,7 @@ export const CategoryListPage = () => {
           return (
             <>
               {`/${category}` === window.location.pathname ? (
-                <div key={title}>
+                <div>
                   <ArticlePreview
                     title={title}
                     articleURL={articleURL}
@@ -52,6 +52,7 @@ export const CategoryListPage = () => {
                     category={category}
                     slug={slug}
                     linkToArticle={linkToArticle}
+                    key={title}
                   />
                 </div>
               ) : (

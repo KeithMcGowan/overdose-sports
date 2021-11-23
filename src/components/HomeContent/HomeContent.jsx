@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ArticlePreview } from "../ArticlePreview/ArticlePreview";
 import "./HomeContent.scss";
+import { Link } from "react-router-dom";
 
 export const HomeContent = ({ categoryReferences }) => {
   return (
@@ -45,6 +46,7 @@ export const HomeContent = ({ categoryReferences }) => {
 
         return (
           <div className={`category-card ${animation} `} key={typeOfSport}>
+          <div>
             <div
               className="category-preview"
               key={typeOfSport}
@@ -55,9 +57,11 @@ export const HomeContent = ({ categoryReferences }) => {
                 <div className="category-text">
                   <h3>{headline}</h3>
                   <p>{description}</p>
+              <Link className="btn category-btn" to={`/${category}`}>View All {typeOfSport} Articles</Link>
                 </div>
               </div>
             </div>
+              </div>
             <ArticlePreview
               title={title}
               articleURL={articleURL}

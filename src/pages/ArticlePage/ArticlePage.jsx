@@ -11,7 +11,7 @@ export const ArticlePage = () => {
   }, []);
 
   let { data, errors } = useContentful(articleQuery);
-  
+
   if (errors)
     return (
       <span className="errors">
@@ -19,7 +19,7 @@ export const ArticlePage = () => {
       </span>
     );
   if (!data) return <span>Loading...</span>;
-  
+
   return (
     <div className="article-page">
       {data.overdoseSportsArticleCollection.items.map((eachItem) => {
@@ -33,13 +33,15 @@ export const ArticlePage = () => {
         const { items: images } = articleImageCollection;
         const { bio, name, photo } = articleAuthor;
         const category = typeOfSport.toLowerCase();
-        
+
         return (
           <>
             {`/${category}/${eachItem.slug}` === window.location.pathname ? (
               <div className="sports-article" key={title}>
                 <div className="return-link">
-                  <Link to="#">View all {typeOfSport} articles</Link>
+                  <Link to={`/${category}`}>
+                    View all {typeOfSport} articles
+                  </Link>
                 </div>
                 <h2>{title}</h2>
                 <img

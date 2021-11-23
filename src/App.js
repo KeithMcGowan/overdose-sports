@@ -56,7 +56,7 @@ function App() {
         <Route path={PATHS.CATEGORYLISTPAGE} element=<CategoryListPage /> />
         <Route path={PATHS.ARTICLEPAGE} element=<ArticlePage /> />
       </Routes>
-      <Footer />
+      <Footer socialLinksCollection={socialLinksCollection} />
     </div>
   );
 }
