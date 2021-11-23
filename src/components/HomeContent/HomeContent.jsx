@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { ArticlePreview } from "../ArticlePreview/ArticlePreview";
 import "./HomeContent.scss";
 
 export const HomeContent = ({ categoryReferences }) => {
@@ -20,10 +19,10 @@ export const HomeContent = ({ categoryReferences }) => {
           sportCategoryImage;
         const { title, articleImageCollection, articleBody, slug } =
           articlePreview;
-        const articleSlug = `/${slug}`;
         const { name: author } = articlePreview.articleAuthor;
         const { url: articleURL, description: articleDescription } =
           articleImageCollection.items[0];
+        const category = typeOfSport.toLowerCase();
 
         let animation;
 
@@ -59,23 +58,16 @@ export const HomeContent = ({ categoryReferences }) => {
                 </div>
               </div>
             </div>
-            <div
-              className="article-preview"
-              key={title}
-              style={{ border: "1px solid black" }}
-            >
-              <h3>{title}</h3>
-              <img src={articleURL} alt={articleDescription} />
-              <div className="article-preview-text">
-                <div className="article-preview-body">
-                  {documentToReactComponents(articleBody.json)}
-                </div>
-                <p className="article-preview-author">- {author}</p>
-                <Link className="btn" to={articleSlug}>
-                  {linkToArticle.buttonText}
-                </Link>
-              </div>
-            </div>
+            <ArticlePreview
+              title={title}
+              articleURL={articleURL}
+              articleDescription={articleDescription}
+              articleBody={articleBody}
+              author={author}
+              category={category}
+              slug={slug}
+              linkToArticle={linkToArticle}
+            />
           </div>
         );
       })}

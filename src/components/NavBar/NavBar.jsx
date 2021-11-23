@@ -16,11 +16,11 @@ export const NavBar = () => {
         setIsActive(!isActive);
       }
     };
-
+    
     if (isActive) {
       window.addEventListener("click", clickEvent);
     }
-
+    
     return () => {
       window.removeEventListener("click", clickEvent);
     };

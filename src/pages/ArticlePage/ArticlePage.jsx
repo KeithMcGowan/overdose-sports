@@ -5,13 +5,13 @@ import { useContentful } from "../../hooks/useContentful.js";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import "./ArticlePage.scss";
 
-export const ArticlePage = (props) => {
+export const ArticlePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
-  let { data, errors } = useContentful(articleQuery);
 
+  let { data, errors } = useContentful(articleQuery);
+  
   if (errors)
     return (
       <span className="errors">
@@ -19,51 +19,52 @@ export const ArticlePage = (props) => {
       </span>
     );
   if (!data) return <span>Loading...</span>;
-
-  //   console.log("Data: ", data, "Props: ", props, "Path: ", window.location.pathname);
+  
   return (
     <div className="article-page">
       {data.overdoseSportsArticleCollection.items.map((eachItem) => {
-        if (`/${eachItem.slug}` === window.location.pathname) {
-          console.log(eachItem);
-          const {
-            articleAuthor,
-            articleBody,
-            articleImageCollection,
-            title,
-            typeOfSport,
-          } = eachItem;
-          const { items: images } = articleImageCollection;
-          const { bio, name, photo } = articleAuthor;
-
-          return (
-            <div className="sports-article" key={title}>
-              <div className="return-link">
-                <Link to="#">View all {typeOfSport} articles</Link>
-              </div>
-              <h2>{title}</h2>
-              <img
-                className="article-img"
-                src={images[0].url}
-                alt={images[0].description}
-              />
-              <div className="article-body">
-                {documentToReactComponents(articleBody.json)}
-              </div>
-              <div className="author-info">
-                <img src={photo.url} alt={photo.title} />
-                <div>
-                  <p className="author-name">
-                    <i>{name}</i>
-                  </p>
-                  <p className="author-bio">{bio}</p>
+        const {
+          articleAuthor,
+          articleBody,
+          articleImageCollection,
+          title,
+          typeOfSport,
+        } = eachItem;
+        const { items: images } = articleImageCollection;
+        const { bio, name, photo } = articleAuthor;
+        const category = typeOfSport.toLowerCase();
+        
+        return (
+          <>
+            {`/${category}/${eachItem.slug}` === window.location.pathname ? (
+              <div className="sports-article" key={title}>
+                <div className="return-link">
+                  <Link to="#">View all {typeOfSport} articles</Link>
+                </div>
+                <h2>{title}</h2>
+                <img
+                  className="article-img"
+                  src={images[0].url}
+                  alt={images[0].description}
+                />
+                <div className="article-body">
+                  {documentToReactComponents(articleBody.json)}
+                </div>
+                <div className="author-info">
+                  <img src={photo.url} alt={photo.title} />
+                  <div>
+                    <p className="author-name">
+                      <i>{name}</i>
+                    </p>
+                    <p className="author-bio">{bio}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        } else {
-          return <></>;
-        }
+            ) : (
+              <div></div>
+            )}
+          </>
+        );
       })}
     </div>
   );

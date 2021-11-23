@@ -16,6 +16,7 @@ import * as PATHS from "./utils/paths";
 
 // Page imports
 import { Homepage } from "./pages/Homepage/Homepage";
+import { CategoryListPage } from "./pages/CategoryListPage/CategoryListPage";
 import { ArticlePage } from "./pages/ArticlePage/ArticlePage";
 import "./App.scss";
 
@@ -36,11 +37,7 @@ function App() {
     heroBanner,
     socialLinksCollection,
   } = data.overdoseSportsLandingPage;
-
-  const referenceSlug = categoryReferenceCollection.items.map((eachRef) => {
-    return eachRef.articlePreview.slug;
-  });
-
+  
   return (
     <div className="App">
       <Header
@@ -56,7 +53,8 @@ function App() {
             categoryReferenceCollection={categoryReferenceCollection}
           />
         />
-        <Route path={PATHS.ARTICLEPAGE} element=<ArticlePage referenceSlug={referenceSlug} /> />
+        <Route path={PATHS.CATEGORYLISTPAGE} element=<CategoryListPage /> />
+        <Route path={PATHS.ARTICLEPAGE} element=<ArticlePage /> />
       </Routes>
       <Footer />
     </div>

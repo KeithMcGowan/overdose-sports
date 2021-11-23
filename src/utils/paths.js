@@ -1,2 +1,3 @@
 export const HOMEPAGE = "/";
-export const ARTICLEPAGE = "/:id";
+export const CATEGORYLISTPAGE = "/:category";
+export const ARTICLEPAGE = "/:category/:id";

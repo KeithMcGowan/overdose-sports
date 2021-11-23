@@ -2,6 +2,8 @@
 
 .nav {
   margin: 3vh 0 0;
+  
+  z-index: 1000;
 
   ul.nav-items {
     margin-bottom: 0;
@@ -15,6 +17,7 @@
     display: inline-block;
     color: $accent-color;
     margin: 0 .25vw;
+    line-height: 1.5em;
 
     a:hover,
     a:focus-visible,
@@ -42,6 +45,7 @@
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(20px);
     border-radius: 15px;
+    padding-bottom: 1.5vh;
   }
 
   .nav-sub-items.active {
