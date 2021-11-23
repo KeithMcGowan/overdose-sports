@@ -19,6 +19,7 @@ import { Homepage } from "./pages/Homepage/Homepage";
 import { CategoryListPage } from "./pages/CategoryListPage/CategoryListPage";
 import { ArticlePage } from "./pages/ArticlePage/ArticlePage";
 import "./App.scss";
+import { WriteArticlePage } from "./pages/WriteArticlePage/WriteArticlePage";
 
 function App() {
   let { data, errors } = useContentful(homepageQuery);
@@ -55,6 +56,7 @@ function App() {
         />
         <Route path={PATHS.CATEGORYLISTPAGE} element=<CategoryListPage /> />
         <Route path={PATHS.ARTICLEPAGE} element=<ArticlePage /> />
+        <Route path={PATHS.WRITEARTICLEPAGE} element=<WriteArticlePage /> />
       </Routes>
       <Footer socialLinksCollection={socialLinksCollection} />
     </div>
