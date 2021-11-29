@@ -1,17 +1,37 @@
-import React
-// { useRef } 
-from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ArticlePreview } from "../ArticlePreview/ArticlePreview";
 import { Link } from "react-router-dom";
-// import { useInView } from "react-intersection-observer";
 import "./HomeContent.scss";
 
 export const HomeContent = ({ categoryReferences }) => {
-  // const ref = useRef();
-  // const inView = useInView(ref, {
-  //   threshold: 0,
-  // })
+  const targetRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const callbackFunction = (entries) => {
+    entries.map((eachEntry) => {
+      console.log("Is intersecting: ", eachEntry.isIntersecting)
+      return setIsVisible(eachEntry.isIntersecting);
+    });
+  };
+
+  const options = useMemo(() => {
+    return {
+      root: null,
+      // rootMargin: "-150px 0px 150px 0px",
+      threshold: 0.1
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callbackFunction, options);
+    const currentTarget = targetRef.current;
+    if (currentTarget) observer.observe(currentTarget);
+
+    return () => {
+      if (currentTarget) observer.unobserve(currentTarget);
+    };
+  }, [targetRef, options]);
 
   return (
     <div className="homepage-content">
@@ -33,7 +53,8 @@ export const HomeContent = ({ categoryReferences }) => {
           articleImageCollection.items[0];
         const category = typeOfSport.toLowerCase();
 
-        let animation;
+        {
+          /* let animation;
 
         if (categoryReferences.items.indexOf(eachCategory) === 0) {
           animation =
@@ -50,44 +71,52 @@ export const HomeContent = ({ categoryReferences }) => {
         } else if (categoryReferences.items.indexOf(eachCategory) === 4) {
           animation =
             "right animate__animated animate__bounceInLeft animate__delay-9s";
+        } */
         }
 
-        {/* if (categoryReferences.items.indexOf(eachCategory) % 2 === 0) {
-          animation =
-            "right animate__animated animate__bounceInLeft animate ";
+        let isLeft;
+        let animation;
+
+        if (categoryReferences.items.indexOf(eachCategory) % 2 === 0) {
+          isLeft = "right";
+          animation = "animate__animated animate__bounceInLeft";
         } else {
-          animation =
-            "left animate__animated animate__bounceInRight animate";
-        } */}
+          isLeft = "left";
+          animation = "animate__animated animate__bounceInRight";
+        }
 
         return (
-          <div className={`category-card ${animation}`} key={typeOfSport}>
-            <div>
-              <div
-                className="category-preview"
-                key={typeOfSport}
-                aria-label={categoryImgAltTxt}
-                style={{ backgroundImage: `url('${categoryURL}')` }}
-              >
-                <div className="gradient-overlay">
-                  <div className="category-text">
-                    <h3>{headline}</h3>
-                    <p>{description}</p>
-                    <Link className="btn category-btn" to={`/${category}`}>View All {typeOfSport} Articles</Link>
+          <div ref={targetRef} key={typeOfSport}>
+            <div className={`category-card ${isLeft} ${isVisible ? animation : ''}`} style={{opacity: isVisible ? '1' : '0'}}>
+              <div>
+                <div
+                  className="category-preview"
+                  key={typeOfSport}
+                  aria-label={categoryImgAltTxt}
+                  style={{ backgroundImage: `url('${categoryURL}')` }}
+                >
+                  <div className="gradient-overlay">
+                    <div className="category-text">
+                      <h3>{headline}</h3>
+                      <p>{description}</p>
+                      <Link className="btn category-btn" to={`/${category}`}>
+                        View All {typeOfSport} Articles
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
+              <ArticlePreview
+                title={title}
+                articleURL={articleURL}
+                articleDescription={articleDescription}
+                articleBody={articleBody}
+                author={author}
+                category={category}
+                slug={slug}
+                linkToArticle={linkToArticle}
+              />
             </div>
-            <ArticlePreview
-              title={title}
-              articleURL={articleURL}
-              articleDescription={articleDescription}
-              articleBody={articleBody}
-              author={author}
-              category={category}
-              slug={slug}
-              linkToArticle={linkToArticle}
-            />
           </div>
         );
       })}
