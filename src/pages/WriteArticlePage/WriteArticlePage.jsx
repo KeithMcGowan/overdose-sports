@@ -4,7 +4,7 @@ import "./WriteArticlePage.scss";
 
 export const WriteArticlePage = () => {
   return (
-    <div>
+    <div className="write-article-page">
       <h2>Hello World</h2>
       <div>
           <WriteArticleForm />

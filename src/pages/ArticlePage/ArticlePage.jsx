@@ -62,9 +62,7 @@ export const ArticlePage = () => {
                   </div>
                 </div>
               </div>
-            ) : (
-              <div></div>
-            )}
+            ) : null}
           </>
         );
       })}

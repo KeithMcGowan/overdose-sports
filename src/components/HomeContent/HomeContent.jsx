@@ -1,10 +1,18 @@
-import React from "react";
+import React
+// { useRef } 
+from "react";
 import PropTypes from "prop-types";
 import { ArticlePreview } from "../ArticlePreview/ArticlePreview";
-import "./HomeContent.scss";
 import { Link } from "react-router-dom";
+// import { useInView } from "react-intersection-observer";
+import "./HomeContent.scss";
 
 export const HomeContent = ({ categoryReferences }) => {
+  // const ref = useRef();
+  // const inView = useInView(ref, {
+  //   threshold: 0,
+  // })
+
   return (
     <div className="homepage-content">
       {categoryReferences.items.map((eachCategory) => {
@@ -44,24 +52,32 @@ export const HomeContent = ({ categoryReferences }) => {
             "right animate__animated animate__bounceInLeft animate__delay-9s";
         }
 
+        {/* if (categoryReferences.items.indexOf(eachCategory) % 2 === 0) {
+          animation =
+            "right animate__animated animate__bounceInLeft animate ";
+        } else {
+          animation =
+            "left animate__animated animate__bounceInRight animate";
+        } */}
+
         return (
-          <div className={`category-card ${animation} `} key={typeOfSport}>
-          <div>
-            <div
-              className="category-preview"
-              key={typeOfSport}
-              aria-label={categoryImgAltTxt}
-              style={{ backgroundImage: `url('${categoryURL}')` }}
-            >
-              <div className="gradient-overlay">
-                <div className="category-text">
-                  <h3>{headline}</h3>
-                  <p>{description}</p>
-              <Link className="btn category-btn" to={`/${category}`}>View All {typeOfSport} Articles</Link>
+          <div className={`category-card ${animation}`} key={typeOfSport}>
+            <div>
+              <div
+                className="category-preview"
+                key={typeOfSport}
+                aria-label={categoryImgAltTxt}
+                style={{ backgroundImage: `url('${categoryURL}')` }}
+              >
+                <div className="gradient-overlay">
+                  <div className="category-text">
+                    <h3>{headline}</h3>
+                    <p>{description}</p>
+                    <Link className="btn category-btn" to={`/${category}`}>View All {typeOfSport} Articles</Link>
+                  </div>
                 </div>
               </div>
             </div>
-              </div>
             <ArticlePreview
               title={title}
               articleURL={articleURL}

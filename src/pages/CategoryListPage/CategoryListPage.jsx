@@ -18,10 +18,10 @@ export const CategoryListPage = () => {
       </span>
     );
   if (!data) return <span>Loading...</span>;
-        console.log(window.location.pathname)
+  
   return (
     <div className="category-page">
-    <h2>{window.location.pathname.slice(1)}</h2>
+      <h2>{window.location.pathname.slice(1)}</h2>
       <div className="category-page-wrapper">
         {data.overdoseSportsArticleCollection.items.map((eachItem) => {
           const {
@@ -55,9 +55,7 @@ export const CategoryListPage = () => {
                     key={title}
                   />
                 </div>
-              ) : (
-                <div></div>
-              )}
+              ) : null}
             </>
           );
         })}
