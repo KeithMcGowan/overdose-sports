@@ -18,12 +18,18 @@ export const CategoryListPage = () => {
       </span>
     );
   if (!data) return <span>Loading...</span>;
-  
+
+  const categoryArticles = data.overdoseSportsArticleCollection.items.filter(
+    (items) => {
+      return `/${items.typeOfSport.toLowerCase()}` === window.location.pathname;
+    }
+  );
+
   return (
     <div className="category-page">
       <h2>{window.location.pathname.slice(1)}</h2>
       <div className="category-page-wrapper">
-        {data.overdoseSportsArticleCollection.items.map((eachItem) => {
+        {categoryArticles.map((eachItem) => {
           const {
             articleAuthor,
             articleBody,
@@ -40,23 +46,19 @@ export const CategoryListPage = () => {
             data.overdoseSportCategoryPreviewCollection.items[0];
 
           return (
-            <>
-              {`/${category}` === window.location.pathname ? (
-                <div>
-                  <ArticlePreview
-                    title={title}
-                    articleURL={articleURL}
-                    articleDescription={articleDescription}
-                    articleBody={articleBody}
-                    author={author}
-                    category={category}
-                    slug={slug}
-                    linkToArticle={linkToArticle}
-                    key={title}
-                  />
-                </div>
-              ) : null}
-            </>
+            <div>
+              <ArticlePreview
+                title={title}
+                articleURL={articleURL}
+                articleDescription={articleDescription}
+                articleBody={articleBody}
+                author={author}
+                category={category}
+                slug={slug}
+                linkToArticle={linkToArticle}
+                key={title}
+              />
+            </div>
           );
         })}
       </div>

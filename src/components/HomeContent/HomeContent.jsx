@@ -53,7 +53,7 @@ export const HomeContent = ({ categoryReferences }) => {
           articleImageCollection.items[0];
         const category = typeOfSport.toLowerCase();
 
-        {
+        {/* { */}
           /* let animation;
 
         if (categoryReferences.items.indexOf(eachCategory) === 0) {
@@ -72,7 +72,7 @@ export const HomeContent = ({ categoryReferences }) => {
           animation =
             "right animate__animated animate__bounceInLeft animate__delay-9s";
         } */
-        }
+        {/* } */}
 
         let isLeft;
         let animation;
