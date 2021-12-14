@@ -20,52 +20,51 @@ export const ArticlePage = () => {
     );
   if (!data) return <span>Loading...</span>;
 
+  const sportsArticle = data.overdoseSportsArticleCollection.items.filter(
+    (item) => {
+      return (
+        `/${item.typeOfSport.toLowerCase()}/${item.slug}` ===
+        window.location.pathname
+      );
+    }
+  );
+
+  const {
+    articleAuthor,
+    articleBody,
+    articleImageCollection,
+    title,
+    typeOfSport,
+  } = sportsArticle[0];
+  const { items: images } = articleImageCollection;
+  const { bio, name, photo } = articleAuthor;
+  const category = typeOfSport.toLowerCase();
+
   return (
     <div className="article-page">
-      {data.overdoseSportsArticleCollection.items.map((eachItem) => {
-        const {
-          articleAuthor,
-          articleBody,
-          articleImageCollection,
-          title,
-          typeOfSport,
-        } = eachItem;
-        const { items: images } = articleImageCollection;
-        const { bio, name, photo } = articleAuthor;
-        const category = typeOfSport.toLowerCase();
-
-        return (
-          <>
-            {`/${category}/${eachItem.slug}` === window.location.pathname ? (
-              <div className="sports-article" key={title}>
-                <div className="return-link">
-                  <Link to={`/${category}`}>
-                    View all {typeOfSport} articles
-                  </Link>
-                </div>
-                <h2>{title}</h2>
-                <img
-                  className="article-img"
-                  src={images[0].url}
-                  alt={images[0].description}
-                />
-                <div className="article-body">
-                  {documentToReactComponents(articleBody.json)}
-                </div>
-                <div className="author-info">
-                  <img src={photo.url} alt={photo.title} />
-                  <div>
-                    <p className="author-name">
-                      <i>{name}</i>
-                    </p>
-                    <p className="author-bio">{bio}</p>
-                  </div>
-                </div>
-              </div>
-            ) : null}
-          </>
-        );
-      })}
+      <div className="sports-article" key={title}>
+        <div className="return-link">
+          <Link to={`/${category}`}>View all {typeOfSport} articles</Link>
+        </div>
+        <h2>{title}</h2>
+        <img
+          className="article-img"
+          src={images[0].url}
+          alt={images[0].description}
+        />
+        <div className="article-body">
+          {documentToReactComponents(articleBody.json)}
+        </div>
+        <div className="author-info">
+          <img src={photo.url} alt={photo.title} />
+          <div>
+            <p className="author-name">
+              <i>{name}</i>
+            </p>
+            <p className="author-bio">{bio}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

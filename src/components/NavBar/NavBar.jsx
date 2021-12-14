@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { useDetectOutsideClick } from "../../hooks/useDetectOutsideClick";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./NavBar.scss";
 
 export const NavBar = () => {
   const dropdownRef = useRef(null);
+  const { page } = useParams();
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
 
@@ -23,35 +24,20 @@ export const NavBar = () => {
             className={`nav-sub-items ${isActive ? "active" : "inactive"}`}
           >
             <li>
-              <Link to="/baseball">Baseball</Link>
+              <Link to="/baseball" page='/baseball' selected={page === '/baseball'}>Baseball</Link>
             </li>
             <li>
-              <Link to="/basketball">Basketball</Link>
+              <Link to="/basketball" page='/basketball' selected={page === '/basketball'}>Basketball</Link>
             </li>
             <li>
-              <Link to="/football">Football</Link>
+              <Link to="/football" page='/football' selected={page === '/football'}>Football</Link>
             </li>
             <li>
-              <Link to="/hockey">Hockey</Link>
+              <Link to="/hockey" page='/hockey' selected={page === '/hockey'}>Hockey</Link>
             </li>
             <li>
-              <Link to="/soccer">Soccer</Link>
+              <Link to="/soccer" page='/soccer' selected={page === '/soccer'}>Soccer</Link>
             </li>
-            {/* <li>
-              <a href="/baseball">Baseball</a>
-            </li>
-            <li>
-              <a href="/basketball">Basketball</a>
-            </li>
-            <li>
-              <a href="/football">Football</a>
-            </li>
-            <li>
-              <a href="/hockey">Hockey</a>
-            </li>
-            <li>
-              <a href="/soccer">Soccer</a>
-            </li> */}
           </ul>
         </li>
         <li>
